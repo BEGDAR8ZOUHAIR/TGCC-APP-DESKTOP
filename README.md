@@ -1,70 +1,115 @@
-# Getting Started with Create React App
+[![Electron Logo](https://electronjs.org/images/electron-logo.svg)](https://electronjs.org)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![CircleCI Build Status](https://circleci.com/gh/electron/electron/tree/main.svg?style=shield)](https://circleci.com/gh/electron/electron/tree/main)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/4lggi9dpjc1qob7k/branch/main?svg=true)](https://ci.appveyor.com/project/electron-bot/electron-ljo26/branch/main)
+[![Electron Discord Invite](https://img.shields.io/discord/745037351163527189?color=%237289DA&label=chat&logo=discord&logoColor=white)](https://discord.gg/electronjs)
 
-## Available Scripts
+:memo: Available Translations: 🇨🇳 🇧🇷 🇪🇸 🇯🇵 🇷🇺 🇫🇷 🇺🇸 🇩🇪.
+View these docs in other languages on our [Crowdin](https://crowdin.com/project/electron) project.
 
-In the project directory, you can run:
+The Electron framework lets you write cross-platform desktop applications
+using JavaScript, HTML and CSS. It is based on [Node.js](https://nodejs.org/) and
+[Chromium](https://www.chromium.org) and is used by the [Atom
+editor](https://github.com/atom/atom) and many other [apps](https://electronjs.org/apps).
 
-### `yarn start`
+Follow [@electronjs](https://twitter.com/electronjs) on Twitter for important
+announcements.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This project adheres to the Contributor Covenant
+[code of conduct](https://github.com/electron/electron/tree/main/CODE_OF_CONDUCT.md).
+By participating, you are expected to uphold this code. Please report unacceptable
+behavior to [coc@electronjs.org](mailto:coc@electronjs.org).
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Installation
 
-### `yarn test`
+To install prebuilt Electron binaries, use [`npm`](https://docs.npmjs.com/).
+The preferred method is to install Electron as a development dependency in your
+app:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```sh
+npm install electron --save-dev
+```
 
-### `yarn build`
+For more installation options and troubleshooting tips, see
+[installation](docs/tutorial/installation.md). For info on how to manage Electron versions in your apps, see
+[Electron versioning](docs/tutorial/electron-versioning.md).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Platform support
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Each Electron release provides binaries for macOS, Windows, and Linux.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* macOS (High Sierra and up): Electron provides 64-bit Intel and ARM binaries for macOS. Apple Silicon support was added in Electron 11.
+* Windows (Windows 10 and up): Electron provides `ia32` (`x86`), `x64` (`amd64`), and `arm64` binaries for Windows. Windows on ARM support was added in Electron 5.0.8. Support for Windows 7, 8 and 8.1 was [removed in Electron 23, in line with Chromium's Windows deprecation policy](https://www.electronjs.org/blog/windows-7-to-8-1-deprecation-notice).
+* Linux: The prebuilt binaries of Electron are built on Ubuntu 20.04. They have also been verified to work on:
+  * Ubuntu 14.04 and newer
+  * Fedora 24 and newer
+  * Debian 8 and newer
 
-### `yarn eject`
+## Quick start & Electron Fiddle
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Use [`Electron Fiddle`](https://github.com/electron/fiddle)
+to build, run, and package small Electron experiments, to see code examples for all of Electron's APIs, and
+to try out different versions of Electron. It's designed to make the start of your journey with
+Electron easier.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Alternatively, clone and run the
+[electron/electron-quick-start](https://github.com/electron/electron-quick-start)
+repository to see a minimal Electron app in action:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```sh
+git clone https://github.com/electron/electron-quick-start
+cd electron-quick-start
+npm install
+npm start
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Resources for learning Electron
 
-## Learn More
+* [electronjs.org/docs](https://electronjs.org/docs) - All of Electron's documentation
+* [electron/fiddle](https://github.com/electron/fiddle) - A tool to build, run, and package small Electron experiments
+* [electron/electron-quick-start](https://github.com/electron/electron-quick-start) - A very basic starter Electron app
+* [electronjs.org/community#boilerplates](https://electronjs.org/community#boilerplates) - Sample starter apps created by the community
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Programmatic usage
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Most people use Electron from the command line, but if you require `electron` inside
+your **Node app** (not your Electron app) it will return the file path to the
+binary. Use this to spawn Electron from Node scripts:
 
-### Code Splitting
+```javascript
+const electron = require('electron')
+const proc = require('child_process')
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+// will print something similar to /Users/maf/.../Electron
+console.log(electron)
 
-### Analyzing the Bundle Size
+// spawn Electron
+const child = proc.spawn(electron)
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Mirrors
 
-### Making a Progressive Web App
+* [China](https://npmmirror.com/mirrors/electron/)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+See the [Advanced Installation Instructions](https://www.electronjs.org/docs/latest/tutorial/installation#mirror) to learn how to use a custom mirror.
 
-### Advanced Configuration
+## Documentation translations
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+We crowdsource translations for our documentation via [Crowdin](https://crowdin.com/project/electron).
+We currently accept translations for Chinese (Simplified), French, German, Japanese, Portuguese,
+Russian, and Spanish.
 
-### Deployment
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+If you are interested in reporting/fixing issues and contributing directly to the code base, please see [CONTRIBUTING.md](CONTRIBUTING.md) for more information on what we're looking for and how to get started.
 
-### `yarn build` fails to minify
+## Community
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Info on reporting bugs, getting help, finding third-party tools and sample apps,
+and more can be found on the [Community page](https://www.electronjs.org/community).
+
+## License
+
+[MIT](https://github.com/electron/electron/blob/main/LICENSE)
+
+When using Electron logos, make sure to follow [OpenJS Foundation Trademark Policy](https://openjsf.org/wp-content/uploads/sites/84/2021/01/OpenJS-Foundation-Trademark-Policy-2021-01-12.docx.pdf).
