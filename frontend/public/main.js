@@ -8,7 +8,8 @@ const isDev = require('electron-is-dev');
 
 let mainWindow;
 
-function createWindow() {
+function createWindow()
+{
     mainWindow = new BrowserWindow({
         x: 200,
         y: 100,
@@ -30,14 +31,18 @@ function createWindow() {
 
 app.on('ready', createWindow);
 
-app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') {
+app.on('window-all-closed', () =>
+{
+    if (process.platform !== 'darwin')
+    {
         app.quit();
     }
 });
 
-app.on('activate', () => {
-    if (mainWindow === null) {
+app.on('activate', () =>
+{
+    if (mainWindow === null)
+    {
         createWindow();
     }
 });
