@@ -37,7 +37,7 @@ function List({ employees, handleEdit, handleDelete }) {
                                 <td className="text-right">
                                     <button
                                         onClick={() => handleEdit(employee.id)}
-                                        className="button muted-button"
+                                        className="button muted-button edit"
                                     >
                                         Edit
                                     </button>
@@ -45,7 +45,7 @@ function List({ employees, handleEdit, handleDelete }) {
                                 <td className="text-left">
                                     <button
                                         onClick={() => handleDelete(employee.id)}
-                                        className="button muted-button"
+                                        className="button muted-button delete"
                                     >
                                         Delete
                                     </button>
